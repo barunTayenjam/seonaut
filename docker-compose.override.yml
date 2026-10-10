@@ -1,0 +1,13 @@
+services:
+  db:
+    restart: unless-stopped
+    volumes:
+      - seonaut-mysql:/var/lib/mysql
+
+  app:
+    restart: unless-stopped
+    volumes:
+      - ./seonaut-data/archive:/app/archive
+
+volumes:
+  seonaut-mysql:

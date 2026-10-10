@@ -45,3 +45,10 @@ archive/*
 web/static/*
 !web/static/favicon.ico
 !web/static/robots.txt
+
+# Local database dumps and WACZ archives. Persistent state lives on the Docker
+# volume seonaut_seonaut-mysql and the bind mount ./seonaut-data/archive, so
+# these are local-only. Snapshot the database with ./backup.sh.
+
+backups/
+seonaut-data/

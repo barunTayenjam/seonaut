@@ -92,6 +92,7 @@ SCHEDULE_NOT_VALID: The crawl schedule is not valid.
 WEBHOOK_LABEL: "Notification webhook URL:"
 WEBHOOK_HELP: POST a JSON crawl summary to this URL after every crawl. Leave empty to disable.
 WEBHOOK_NOT_VALID: The webhook URL is not valid.
+SITEMAP_URLS_LABEL: "Extra sitemap URLs (comma-separated, beyond robots.txt)"
 
 ADD_PROJECT: Add Project
 URL_LABEL: "URL:"
@@ -634,4 +635,3 @@ ERROR_PAGINATION_LINKS_DESC: Having link rel="next" and link rel="prev" tags wit
 
 ERROR_LOCALHOST_LINKS: Webpages with links to localhost
 ERROR_LOCALHOST_LINKS_DESC: Links to localhost or 127.0.0.1 are inaccessible to users and search engines, causing errors and poor SEO. To fix this, replace these links with the correct public URLs pointing to your live website.
-SITEMAP_URLS_LABEL: "Extra sitemap URLs (comma-separated, beyond robots.txt)"

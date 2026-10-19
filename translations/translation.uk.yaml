@@ -91,6 +91,7 @@ SCHEDULE_NOT_VALID: Розклад сканування недійсний.
 # Webhook URL for crawl completion notifications
 WEBHOOK_LABEL: "URL вебхука сповіщень:"
 WEBHOOK_HELP: Надсилати JSON-підсумок сканування на цю URL після кожного сканування. Залиште порожнім, щоб вимкнути.
+SITEMAP_URLS_LABEL: "Додаткові URL-адреси карти сайту (розділені комами, крім robots.txt)"
 WEBHOOK_NOT_VALID: URL вебхука недійсний.
 
 ADD_PROJECT: Додати проєкт

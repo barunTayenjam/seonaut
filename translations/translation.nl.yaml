@@ -91,6 +91,7 @@ SCHEDULE_NOT_VALID: Het crawlschema is niet geldig.
 # Webhook URL for crawl completion notifications
 WEBHOOK_LABEL: "Webhook-URL voor meldingen:"
 WEBHOOK_HELP: POST een JSON-samenvatting van de crawl naar deze URL na elke crawl. Laat leeg om uit te schakelen.
+SITEMAP_URLS_LABEL: "Extra sitemap-URL's (kommagescheiden, naast robots.txt)"
 WEBHOOK_NOT_VALID: De webhook-URL is niet geldig.
 
 ADD_PROJECT: Project toevoegen

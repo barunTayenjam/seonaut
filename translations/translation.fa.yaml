@@ -91,6 +91,7 @@ SCHEDULE_NOT_VALID: برنامه خزش معتبر نیست.
 # Webhook URL for crawl completion notifications
 WEBHOOK_LABEL: "نشانی وب‌هوک اعلان:"
 WEBHOOK_HELP: پس از هر خزش، خلاصه JSON به این نشانی ارسال می‌شود. برای غیرفعال کردن خالی بگذارید.
+SITEMAP_URLS_LABEL: "نشانی‌های اضافی نقشه سایت (با کاما جدا شده، علاوه بر robots.txt)"
 WEBHOOK_NOT_VALID: نشانی وب‌هوک معتبر نیست.
 
 ADD_PROJECT: اضافه کردن پروژه

@@ -91,6 +91,7 @@ SCHEDULE_NOT_VALID: La programación del rastreo no es válida.
 # Webhook URL for crawl completion notifications
 WEBHOOK_LABEL: "URL del webhook de notificación:"
 WEBHOOK_HELP: Envía un resumen del rastreo en JSON a esta URL después de cada rastreo. Deja vacío para desactivar.
+SITEMAP_URLS_LABEL: "URLs extra del sitemap (separadas por comas, además de robots.txt)"
 WEBHOOK_NOT_VALID: La URL del webhook no es válida.
 
 ADD_PROJECT: Añadir proyecto

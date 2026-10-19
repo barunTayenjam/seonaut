@@ -23,4 +23,5 @@ type Project struct {
 	ScheduleInterval   string     // Recrawl interval: "", "hourly", "daily" or "weekly".
 	NextRun            *time.Time // Next time the scheduler will start a crawl for this project.
 	Scheduled          bool       // Transient: set by the scheduler when it starts a run. Not persisted.
+	SitemapURLs        string     // Comma-separated sitemap URLs used in addition to robots.txt discovery.
 }

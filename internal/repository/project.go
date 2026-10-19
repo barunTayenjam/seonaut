@@ -29,9 +29,10 @@ func (ds *ProjectRepository) SaveProject(project *models.Project, uid int) {
 			user_agent,
 			schedule_interval,
 			next_run,
-			webhook_url
+			webhook_url,
+			sitemap_urls
 		)
-		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 	`
 
 	stmt, _ := ds.DB.Prepare(query)
@@ -51,6 +52,7 @@ func (ds *ProjectRepository) SaveProject(project *models.Project, uid int) {
 		project.ScheduleInterval,
 		project.NextRun,
 		project.WebhookURL,
+		project.SitemapURLs,
 	)
 	if err != nil {
 		log.Printf("saveProject: %v\n", err)
@@ -77,7 +79,8 @@ func (ds *ProjectRepository) FindProjectsByUser(uid int) []models.Project {
 			user_agent,
 			schedule_interval,
 			next_run,
-			webhook_url
+			webhook_url,
+			sitemap_urls
 		FROM projects
 		WHERE user_id = ?
 		ORDER BY url ASC`
@@ -108,6 +111,7 @@ func (ds *ProjectRepository) FindProjectsByUser(uid int) []models.Project {
 			&p.ScheduleInterval,
 			&nextRun,
 			&p.WebhookURL,
+			&p.SitemapURLs,
 		)
 		if err != nil {
 			log.Println(err)
@@ -144,7 +148,8 @@ func (ds *ProjectRepository) FindProjectById(id int, uid int) (models.Project, e
 			user_agent,
 			schedule_interval,
 			next_run,
-			webhook_url
+			webhook_url,
+			sitemap_urls
 		FROM projects
 		WHERE id = ? AND user_id = ?`
 
@@ -169,6 +174,7 @@ func (ds *ProjectRepository) FindProjectById(id int, uid int) (models.Project, e
 		&p.ScheduleInterval,
 		&nextRun,
 		&p.WebhookURL,
+		&p.SitemapURLs,
 	)
 	if err != nil {
 		log.Println(err)
@@ -217,7 +223,8 @@ func (ds *ProjectRepository) UpdateProject(p *models.Project) error {
 			user_agent = ?,
 			schedule_interval = ?,
 			next_run = ?,
-			webhook_url = ?
+			webhook_url = ?,
+			sitemap_urls = ?
 		WHERE id = ?
 	`
 	_, err := ds.DB.Exec(
@@ -234,6 +241,7 @@ func (ds *ProjectRepository) UpdateProject(p *models.Project) error {
 		p.ScheduleInterval,
 		p.NextRun,
 		p.WebhookURL,
+		p.SitemapURLs,
 		p.Id,
 	)
 
@@ -260,7 +268,8 @@ func (ds *ProjectRepository) FindScheduledProjects() []models.Project {
 			user_agent,
 			schedule_interval,
 			next_run,
-			webhook_url
+			webhook_url,
+			sitemap_urls
 		FROM projects
 		WHERE schedule_interval != '' AND deleting = 0
 		ORDER BY id ASC`
@@ -291,6 +300,7 @@ func (ds *ProjectRepository) FindScheduledProjects() []models.Project {
 			&p.ScheduleInterval,
 			&nextRun,
 			&p.WebhookURL,
+			&p.SitemapURLs,
 		)
 		if err != nil {
 			log.Println(err)

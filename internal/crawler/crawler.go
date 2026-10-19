@@ -25,8 +25,8 @@ const (
 	// Number of threads a queue will use to crawl a project.
 	consumerThreads = 2
 
-	// Crawler timeout in hours.
-	crawlerTimeout = 2
+	// Default crawl timeout in hours, used when options carry no timeout.
+	DefaultCrawlerTimeout = 2
 )
 
 var ErrBlockedByRobotstxt = errors.New("blocked by robots.txt")
@@ -48,6 +48,8 @@ type Options struct {
 	IncludeNoindex  bool
 	CrawlSitemap    bool
 	AllowSubdomains bool
+	Timeout         int      // Crawl timeout in hours. Defaults to DefaultCrawlerTimeout when <= 0.
+	SitemapURLs     []string // Extra sitemap URLs in addition to robots.txt discovery.
 }
 
 type Status struct {
@@ -105,7 +107,11 @@ func NewCrawler(parsedURL *url.URL, options *Options, client Client) *Crawler {
 	robotsChecker := NewRobotsChecker(client)
 	sitemapChecker := NewSitemapChecker(client, options.CrawlLimit)
 
-	ctx, cancel := context.WithTimeout(context.Background(), crawlerTimeout*time.Hour)
+	crawlerTimeout := options.Timeout
+	if crawlerTimeout <= 0 {
+		crawlerTimeout = DefaultCrawlerTimeout
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), time.Duration(crawlerTimeout)*time.Hour)
 
 	return &Crawler{
 		Client:         client,
@@ -238,6 +244,10 @@ func (c *Crawler) setupSitemaps() {
 	if len(sitemaps) == 0 {
 		sitemaps = []string{c.url.Scheme + "://" + c.url.Host + "/sitemap.xml"}
 	}
+
+	// Append the project's extra sitemap URLs, so sitemaps that are not
+	// listed in robots.txt and not at the default location are also crawled.
+	sitemaps = append(sitemaps, c.options.SitemapURLs...)
 
 	for _, sm := range sitemaps {
 		parsedSm, err := url.Parse(sm)

@@ -56,6 +56,8 @@
 					<label for="webhook_url">{{ trans "WEBHOOK_LABEL" }}</label>
 					<input type="url" name="webhook_url" id="webhook_url" value="{{ .Project.WebhookURL }}" placeholder="https://hooks.example.com/seonaut">
 					<p class="toggle-help">{{ trans "WEBHOOK_HELP" }}</p>
+					<label for="sitemap_urls">{{ trans "SITEMAP_URLS_LABEL" }}</label>
+					<input type="text" name="sitemap_urls" id="sitemap_urls" value="{{ .Project.SitemapURLs }}" placeholder="https://example.com/sitemap1.xml,https://example.com/sitemap2.xml">
 				</div>
 			</div>
 		</div>

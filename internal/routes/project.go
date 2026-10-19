@@ -160,6 +160,7 @@ func (h *projectHandler) addPostHandler(w http.ResponseWriter, r *http.Request) 
 		UserAgent:          userAgent,
 		ScheduleInterval:   r.FormValue("schedule_interval"),
 		WebhookURL:         r.FormValue("webhook_url"),
+		SitemapURLs:        r.FormValue("sitemap_urls"),
 	}
 
 	err = h.ProjectService.SaveProject(project, user.Id)

@@ -31,6 +31,7 @@ func NewServer(container *services.Container) {
 	crawlHandler := crawlHandler{container}
 	http.HandleFunc("GET /crawl/start", container.CookieSession.Auth(crawlHandler.startHandler))
 	http.HandleFunc("GET /crawl/stop", container.CookieSession.Auth(crawlHandler.stopHandler))
+	http.HandleFunc("GET /crawl/scan-url", container.CookieSession.Auth(crawlHandler.urlScanHandler))
 	http.HandleFunc("GET /crawl/live", container.CookieSession.Auth(crawlHandler.liveCrawlHandler))
 	http.HandleFunc("GET /crawl/auth", container.CookieSession.Auth(crawlHandler.authGetHandler))
 	http.HandleFunc("POST /crawl/auth", container.CookieSession.Auth(crawlHandler.authPostHandler))

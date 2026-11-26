@@ -220,6 +220,25 @@ Each project can have a notification webhook URL, entered when the project is cr
 
 The `scheduled` flag tells whether the crawl was started by the scheduler or manually. Delivery failures are logged by the server and never fail the crawl. The URL must be an absolute `http` or `https` URL; leaving it empty disables notifications. The payload is plain JSON, so any receiver that accepts JSON POSTs works; services expecting their own payload shape (Slack `text`, Discord `content`, ...) need a small transform, e.g. a Zapier/n8n webhook step.
 
+### Single URL re-scan
+
+To re-scan a single problematic page without running a full-site crawl, open:
+
+```
+GET /crawl/scan-url?pid=<project_id>&url=<absolute_url>
+```
+
+The endpoint:
+
+- validates the URL host matches the project's host (and its `www.` variant),
+- requires an authenticated user session,
+- respects the in-memory crawl lock (rejected if a crawl is already running for the project),
+- creates a new crawl record,
+- starts the crawl on the target URL only,
+- redirects to the live crawl page (`/crawl/live?pid=<id>`) on success.
+
+Projects using HTTP Basic auth are redirected to the auth page first.
+
 ---
 
 ## Setting Up a Reverse Proxy

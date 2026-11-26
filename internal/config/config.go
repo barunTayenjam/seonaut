@@ -9,7 +9,8 @@ import (
 
 // CrawlerConfig stores the configuration for the crawler.
 type CrawlerConfig struct {
-	Agent string `mapstructure:"agent"`
+	Agent   string `mapstructure:"agent"`
+	Timeout int    `mapstructure:"timeout"` // Crawl timeout in hours.
 }
 
 // HTTPServerConfig stores the configuration for the HTTP server.
@@ -53,6 +54,10 @@ func NewConfig(configFile string) (*Config, error) {
 	viper.AddConfigPath(filepath.Dir(configFile))
 	viper.SetConfigName(filepath.Base(configFile))
 	viper.SetConfigType("toml")
+
+	// Defaults so keys not present in the config file can still be
+	// overridden by SEONAUT_* environment variables.
+	viper.SetDefault("crawler.timeout", 2)
 
 	// Enable environment variable support
 	viper.AutomaticEnv()

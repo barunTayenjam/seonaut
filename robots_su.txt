@@ -1,0 +1,38 @@
+# Block Bytedance / Bytespider
+User-agent: Bytedance
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# Global Rules (Applies to Googlebot, Claude, Perplexity, GPTBot, etc.)
+User-agent: *
+# Exceptions (Allow these first)
+Allow: /wp-content/plugins/litespeed-cache/guest.vary.php
+Allow: /cdn-cgi/speculation
+
+# Explicitly Allow AI / Search Bots
+Allow: /
+
+# Disallow rules
+Disallow: /wp-admin/
+Disallow: /wp-content/plugins/
+Disallow: /cdn-cgi/
+Disallow: /readme.html
+Disallow: /humor/
+Disallow: /pages-pdf/
+Disallow: /price-calculator/
+Disallow: /roi-calculator/
+Disallow: /roi-conversion/
+Disallow: /customer-referral-program/
+Disallow: /customer-referral-program-evaluation/
+Disallow: /searchunifys-customer-referral-program/
+Disallow: /elevate-your-support-ecosystem-with-ai-powered-sx-platform/
+Disallow: /outreach-unsubscribe/
+Disallow: /?s=
+Disallow: /search-results/
+Disallow: /searchunify-roi-calculator-custom/
+Disallow: /*?gtm_latency= 
+
+Sitemap: https://www.searchunify.com/sitemap_index.xml
+

@@ -6,6 +6,8 @@ services:
 
   app:
     restart: unless-stopped
+    environment:
+      - SEONAUT_CRAWLER_TIMEOUT=${SEONAUT_CRAWLER_TIMEOUT:-24}
     volumes:
       - ./seonaut-data/archive:/app/archive
 

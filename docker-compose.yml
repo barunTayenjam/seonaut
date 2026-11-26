@@ -2,6 +2,9 @@ services:
   db:
     image: mysql:8.4
     container_name: "SEOnaut-db"
+    # Without a restart policy these containers stay stopped after a host
+    # reboot (Docker's default is "no"). Added 2026-10-21.
+    restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=seonaut
@@ -13,6 +16,7 @@ services:
   app:
     build: .
     container_name: "SEOnaut-app"
+    restart: unless-stopped
     ports:
       - "${SEONAUT_PORT:-9000}:9000"
     depends_on:

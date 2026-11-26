@@ -18,6 +18,7 @@ func TestLoadConfig(t *testing.T) {
 	}{
 		{config.HTTPServer.Port, 9000},
 		{config.DB.Port, 3306},
+		{config.Crawler.Timeout, 6},
 	}
 
 	for _, pv := range pm {
